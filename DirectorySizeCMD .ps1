@@ -11,7 +11,7 @@ Param
 $TgtFolder = $TgtFolder.Trim("'")
 $TgtFolder = $TgtFolder.Trim('"')
 
-$Script:RegexMachineName = [regex]"(A|D|E|H|M|R|T|S|W){1}(D|L|R){1}[A-Z]{4}\d{6}(NN|KT|NR|TR|KP|)(\.NADSUSEA\.NADS\.NAVY\.MIL|\.NADSUSWE\.NADS\.NAVY\.MIL|\.NMCI-ISF\.COM|\.PACOM\.MIL|)"
+$Script:RegexMachineName = [regex] #### YOUR CUSTOM MACHINE NAME #####
 $Script:RegexIPAddress = [regex]"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b"
 $Script:Machine = $null
 $Script:Regex = [regex]"(k|g|m|b)"
@@ -19,7 +19,7 @@ $Script:Machine = ([regex]::Match($TgtFolder, $Script:RegexMachineName)).Value
 $Script:IPAddress = ([regex]::Match($TgtFolder, $Script:RegexIPAddress)).Value
 $Script:TGT = $null
 
-
+$ErrorActionPreference = 'SilentlyContinue'
 
 if ($Script:Machine.Length -gt 5) {
     $Script:TGT = New-PSSession -ComputerName $Script:Machine -Name 'TGTMachine'
